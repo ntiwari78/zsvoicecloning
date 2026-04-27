@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice Cloning Research Timeline (2022-2026)</title>
+    <title>Voice Cloning Research Timeline (2001-2026)</title>
     <style>
         * {
             margin: 0;
@@ -198,16 +198,16 @@
 <body>
     <div class="container">
         <h1>Voice Cloning Research Timeline</h1>
-        <p class="subtitle">Comprehensive Survey of Zero-Shot and Controllable Speech Synthesis (2022&ndash;2026)</p>
+        <p class="subtitle">Comprehensive Survey of Zero-Shot and Controllable Speech Synthesis (2001&ndash;2026)</p>
 
         <div class="stats">
             <div class="stat-box">
-                <div class="stat-number">65+</div>
+                <div class="stat-number">80</div>
                 <div class="stat-label">References in Survey</div>
             </div>
             <div class="stat-box">
                 <div class="stat-number">36</div>
-                <div class="stat-label">Systems Covered</div>
+                <div class="stat-label">Systems</div>
             </div>
             <div class="stat-box">
                 <div class="stat-number">1M+</div>
@@ -220,7 +220,7 @@
         </div>
 
         <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterPapers('all')">All Systems</button>
+            <button class="filter-btn active" onclick="filterPapers('all')">All</button>
             <button class="filter-btn" onclick="filterPapers('Neural Codec LM')">Neural Codec LM</button>
             <button class="filter-btn" onclick="filterPapers('Flow/Diffusion')">Flow/Diffusion</button>
             <button class="filter-btn" onclick="filterPapers('Disentanglement')">Disentanglement</button>
@@ -228,6 +228,10 @@
             <button class="filter-btn" onclick="filterPapers('Streaming')">Streaming</button>
             <button class="filter-btn" onclick="filterPapers('Multimodal')">Multimodal</button>
             <button class="filter-btn" onclick="filterPapers('Security')">Security</button>
+            <button class="filter-btn" onclick="filterPapers('RL/Alignment')">RL/Alignment</button>
+            <button class="filter-btn" onclick="filterPapers('Evaluation')">Evaluation</button>
+            <button class="filter-btn" onclick="filterPapers('Datasets')">Datasets</button>
+            <button class="filter-btn" onclick="filterPapers('Foundation')">Foundation</button>
         </div>
 
         <div class="legend">
@@ -259,6 +263,22 @@
                 <div class="legend-color" style="background: #e67e22;"></div>
                 <span>Security</span>
             </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #c0392b;"></div>
+                <span>RL/Alignment</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #8e44ad;"></div>
+                <span>Evaluation</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #16a085;"></div>
+                <span>Datasets</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #34495e;"></div>
+                <span>Foundation</span>
+            </div>
         </div>
 
         <div class="timeline" id="timeline"></div>
@@ -266,14 +286,54 @@
 
     <script>
         const papers = [
+            // ===== 2001 =====
+            {name: 'PESQ', date: '2001', category: 'Evaluation', desc: 'Perceptual Evaluation of Speech Quality. ITU-T standard metric for objective speech quality assessment, widely used in TTS evaluation. ICASSP 2001.', year: 2001},
+
+            // ===== 2011 =====
+            {name: 'STOI', date: '2011', category: 'Evaluation', desc: 'Short-Time Objective Intelligibility measure. Algorithm for intelligibility prediction of time-frequency weighted noisy speech. IEEE Trans. Audio, Speech, Lang. Process.', year: 2011},
+
+            // ===== 2015 =====
+            {name: 'LibriSpeech', date: '2015', category: 'Datasets', desc: 'Large-scale ASR corpus based on public domain audio books. 1000 hours of read English speech. Foundational benchmark dataset. ICASSP 2015.', year: 2015},
+
+            // ===== 2017 =====
+            {name: 'Transformer', date: '2017', category: 'Foundation', desc: 'Attention Is All You Need. Introduced the Transformer architecture with self-attention, forming the backbone of modern TTS systems. NeurIPS 2017.', year: 2017},
+            {name: 'VCTK', date: '2017', category: 'Datasets', desc: 'CSTR VCTK Corpus: English multi-speaker corpus for voice cloning research. 110 speakers with various accents. University of Edinburgh.', year: 2017},
+
+            // ===== 2019 =====
+            {name: 'LibriTTS', date: '2019', category: 'Datasets', desc: 'Corpus derived from LibriSpeech optimized for text-to-speech research. Improved text normalization and audio quality over LibriSpeech.', year: 2019},
+
+            // ===== 2020 =====
+            {name: 'DDPM', date: '2020', category: 'Foundation', desc: 'Denoising Diffusion Probabilistic Models. Foundational work on diffusion-based generative modeling, underpinning modern diffusion TTS architectures. NeurIPS 2020.', year: 2020},
+            {name: 'HiFi-GAN', date: '2020', category: 'Foundation', desc: 'Generative adversarial network for efficient and high fidelity speech synthesis. Widely used as vocoder in TTS pipelines. NeurIPS 2020.', year: 2020},
+            {name: 'ECAPA-TDNN', date: '2020', category: 'Evaluation', desc: 'Emphasized Channel Attention, Propagation and Aggregation in TDNN-based speaker verification. Standard speaker embedding extractor for similarity metrics. Interspeech 2020.', year: 2020},
+            {name: 'Common Voice', date: '2020', category: 'Datasets', desc: 'Mozilla\'s massively multilingual speech corpus. Crowdsourced, open dataset covering 60+ languages for speech research.', year: 2020},
+            {name: 'MLS', date: '2020', category: 'Datasets', desc: 'Multilingual LibriSpeech: large-scale multilingual dataset for speech research. 50K+ hours across 8 languages.', year: 2020},
+            {name: 'Libri-Light', date: '2020', category: 'Datasets', desc: 'Benchmark for ASR with limited or no supervision. 60K hours of unlabeled English speech from LibriVox.', year: 2020},
+
+            // ===== 2021 =====
+            {name: 'Phonological Features', date: '2021', category: 'Foundation', desc: 'Phonological features for zero-shot multilingual speech synthesis. Enables cross-lingual transfer through universal phonological representations.', year: 2021},
+            {name: 'ASVspoof 2021', date: '2021', category: 'Evaluation', desc: 'Challenge for accelerating progress in spoofed and deepfake speech detection. Key benchmark for evaluating voice anti-spoofing systems.', year: 2021},
+            {name: 'Tan et al. Survey', date: '2021', category: 'Foundation', desc: 'A Survey on Neural Speech Synthesis. Comprehensive overview of pre-codec-LM neural TTS methods. Important baseline survey for the field.', year: 2021},
+            {name: 'GigaSpeech', date: '2021', category: 'Datasets', desc: 'Evolving, multi-domain ASR corpus with 10,000 hours of transcribed audio from audiobooks, podcasts, and YouTube.', year: 2021},
+
             // ===== 2022 =====
             {name: 'YourTTS', date: '2022-06', category: 'Multimodal', desc: 'Multilingual zero-shot multi-speaker synthesis within a unified VITS-style architecture. Demonstrated multilingual speaker-conditioned synthesis was feasible without speaker-specific retraining. Trained on 1.2K hours. ICML 2022.', year: 2022},
+            {name: 'Flow Matching', date: '2022', category: 'Foundation', desc: 'Flow Matching for Generative Modeling. Core framework enabling continuous normalizing flows for TTS, used by Voicebox, F5-TTS, and others.', year: 2022},
+            {name: 'EnCodec', date: '2022', category: 'Foundation', desc: 'High Fidelity Neural Audio Compression. Foundational neural audio codec with RVQ, enabling the codec language model paradigm (VALL-E, etc.).', year: 2022},
+            {name: 'LoRA', date: '2022', category: 'Foundation', desc: 'Low-Rank Adaptation of Large Language Models. Parameter-efficient fine-tuning method widely used for speaker adaptation in TTS. ICLR 2022.', year: 2022},
+            {name: 'Over-Smoothing', date: '2022', category: 'Foundation', desc: 'Revisiting Over-Smoothness in Text to Speech. Identifies and addresses the over-smoothing problem in neural TTS models. ACL 2022.', year: 2022},
+            {name: 'Gender-Ambiguous', date: '2022', category: 'Foundation', desc: 'Towards Gender-Ambiguous Speech Synthesis: A Controllable Voice Framework. Explores controllable gender expression in synthesized speech.', year: 2022},
+            {name: 'UTMOS', date: '2022', category: 'Evaluation', desc: 'UTokyo-SaruLab MOS Prediction System. Automated mean opinion score estimation for speech quality without human raters.', year: 2022},
+            {name: 'WavLM', date: '2022', category: 'Evaluation', desc: 'Large-Scale Self-Supervised Pre-Training for Full Stack Speech Processing. Used as speaker similarity extractor in voice cloning evaluation. IEEE JSTSP.', year: 2022},
+            {name: 'WenetSpeech', date: '2022', category: 'Datasets', desc: 'A 10,000+ hours multi-domain Mandarin corpus for speech recognition. Key training resource for Mandarin TTS. ICASSP 2022.', year: 2022},
 
             // ===== 2023 =====
             {name: 'VALL-E', date: '2023-01', category: 'Neural Codec LM', desc: 'Pioneering zero-shot codec language model that established the paradigm of generating EnCodec tokens autoregressively from text and short speaker prompts. Trained on 60K hours of Libri-Light with 8 RVQ layers. 3-second prompt cloning.', year: 2023},
             {name: 'Voicebox', date: '2023-06', category: 'Flow/Diffusion', desc: 'Broadened the codec LM design space by employing optimal-transport flow matching, enabling non-causal refinement, flexible conditioning, and editing-style use cases at scale. Trained on 60K hrs English + 50K multilingual.', year: 2023},
             {name: 'Mega-TTS', date: '2023-06', category: 'Neural Codec LM', desc: 'Introduced hierarchical prompting and stronger representational bias through intrinsic inductive bias. Decomposes speech into content, timbre, prosody, and phase attributes, each modeled with appropriate inductive biases.', year: 2023},
             {name: 'HierSpeech++', date: '2023-11', category: 'Disentanglement', desc: 'Hierarchical semantic-acoustic disentanglement based on self-supervised representations. Bridges the gap between semantic and acoustic representation of speech through hierarchical modeling.', year: 2023},
+            {name: 'Whisper', date: '2023', category: 'Evaluation', desc: 'Robust Speech Recognition via Large-Scale Weak Supervision. Standard ASR backend (Whisper-large-v3) for WER computation in TTS evaluation. ICML 2023.', year: 2023},
+            {name: 'SYSPIN', date: '2023', category: 'Datasets', desc: 'Crowd-sourced Indic language dataset for speech synthesis and recognition. Supports low-resource Indian language TTS research. Proc. Interspeech (ISCA).', year: 2023},
 
             // ===== 2024 =====
             {name: 'Parler-TTS', date: '2024-02', category: 'Controllable', desc: 'Natural language guidance of high-fidelity text-to-speech with synthetic annotations. Scalable method for labeling speaker identity, style, and recording conditions, applied to a 45K hour dataset. Fully open-source.', year: 2024},
@@ -291,11 +351,19 @@
             {name: 'Fish-Speech', date: '2024-11', category: 'Streaming', desc: 'Combines large-scale multilingual training (720K hours, primarily Mandarin and English) with dual autoregressive architecture and grouped finite scalar quantization (GFSQ). Avoids exponential codebook growth.', year: 2024},
             {name: 'CosyVoice 2', date: '2024-12', category: 'Streaming', desc: 'Production-oriented streaming design with 0.5B parameters, chunked decoding, FSQ-style quantization, and small look-ahead buffers. First-packet latency ~150 ms. Trained on 200K hours.', year: 2024},
             {name: 'AudioSeal', date: '2024-01', category: 'Security', desc: 'Proactive detection of voice cloning with localized watermarking. Embeds imperceptible watermarks that survive voice cloning pipelines, enabling detection of synthetic speech.', year: 2024},
+            {name: 'FSQ', date: '2024', category: 'Foundation', desc: 'Finite Scalar Quantization: VQ-VAE Made Simple. Replaces VQ with simple scalar quantization, adopted in modern TTS codecs for efficiency. ICLR 2024.', year: 2024},
+            {name: 'Synthetic ASR', date: '2024', category: 'Foundation', desc: 'Zero-Shot TTS-Augmented ASR Training with Diverse Synthetic Voices. Demonstrates using TTS-generated data to improve ASR systems.', year: 2024},
+            {name: 'DPO for TTS', date: '2024', category: 'RL/Alignment', desc: 'Direct Preference Optimization analysis for speech generation, extending Seed-TTS with alignment techniques for improved naturalness and speaker similarity.', year: 2024},
+            {name: 'Context-TTS', date: '2024', category: 'Multimodal', desc: 'Improving Audio-Codec-Based Zero-Shot TTS with Multi-Modal Context. Incorporates conversational history and emotional context to improve synthesis coherence in dialogue.', year: 2024},
+            {name: 'LiveBench', date: '2024', category: 'Evaluation', desc: 'A Challenging, Contamination-Free LLM Benchmark. Dynamic test set updates to resist benchmark contamination, applicable to speech model evaluation.', year: 2024},
+            {name: 'Emilia', date: '2024', category: 'Datasets', desc: 'Extensive, multilingual, and diverse speech dataset for large-scale speech generation. High-quality multi-language corpus for training modern TTS systems.', year: 2024},
+            {name: 'IndicVoices', date: '2024', category: 'Datasets', desc: 'Towards building an inclusive multilingual speech dataset for Indian languages. Supports low-resource multilingual TTS research.', year: 2024},
+            {name: 'EU AI Act', date: '2024', category: 'Foundation', desc: 'Regulation (EU) 2024/1689: AI Act. Key regulatory framework requiring transparency and disclosure for AI-generated synthetic speech content.', year: 2024},
 
             // ===== 2025 =====
             {name: 'Vevo', date: '2025-02', category: 'Disentanglement', desc: 'Two-stage controllable voice imitation: AR transformer models content and style, flow-matching transformer handles acoustics. VQ-VAE disentangles timbre, style, and content. Enables accent and emotion conversion.', year: 2025},
             {name: 'Spark-TTS', date: '2025-03', category: 'Neural Codec LM', desc: 'LLM-based framework with BiCodec producing semantic tokens for content and global tokens for speaker attributes via single-stream decoupling. DPO preference alignment. 0.6B params, 120K hrs. WER 2.7%.', year: 2025},
-            {name: 'ClonEval', date: '2025-04', category: 'Security', desc: 'Open voice cloning benchmark using WavLM-based speaker similarity as primary identity metric. Standardized automated pipeline for reference selection, synthesis, and evaluation. English-only, no human MOS.', year: 2025},
+            {name: 'ClonEval', date: '2025-04', category: 'Evaluation', desc: 'Open voice cloning benchmark using WavLM-based speaker similarity as primary identity metric. Standardized automated pipeline for reference selection, synthesis, and evaluation. English-only, no human MOS.', year: 2025},
             {name: 'CosyVoice 3', date: '2025-05', category: 'Streaming', desc: 'Scales to 1M hours across 9 languages and 18 Chinese dialects, 1.5B parameters. Novel supervised multi-task speech tokenizer improves prosody. Differentiable reward model for post-training. WER 2.1%, Spkr Sim 0.76.', year: 2025},
             {name: 'MiniMax-Speech', date: '2025-05', category: 'Multimodal', desc: 'Massive 32-language zero-shot TTS with learnable speaker encoder and Flow-VAE design. 0.8B params, 180K hrs training. WER 2.8%, Spkr Sim 0.74. Highly ranked in community evaluations.', year: 2025},
             {name: 'VoiceMark', date: '2025-05', category: 'Security', desc: 'Voice cloning-resistant watermarking leveraging speaker-specific latents as watermark carriers. RVQ models for latent disentanglement, cross-attention-based watermark embedders. High detection accuracy after synthesis.', year: 2025},
@@ -303,7 +371,15 @@
             {name: 'IndexTTS 2', date: '2025-06', category: 'Controllable', desc: 'Joint duration and emotion control using Qwen-based language model with soft instruction mechanisms. Prioritizes explicit emotion and duration control for expressive synthesis.', year: 2025},
             {name: 'EmoSphere++', date: '2025-07', category: 'Controllable', desc: 'Emotion-controllable zero-shot TTS using emotion-adaptive spherical vector and multi-level style encoder. Separates speaker identity, prosody, and emotion. Published in IEEE Transactions on Affective Computing.', year: 2025},
             {name: 'DisCo-Speech', date: '2025-12', category: 'Disentanglement', desc: 'DisCodec with tri-factor disentanglement (content, prosody, timbre) at codec level. LM-based generator enables prosodic continuation with independent timbre control via cross-attention decoder injection.', year: 2025},
-            {name: 'GLM-TTS', date: '2025-12', category: 'Neural Codec LM', desc: 'Applies Group Relative Policy Optimization (GRPO) to zero-shot speech generation. Generates groups of candidates, scores with reward model, computes group-relative advantages. 1.3B params, CER 1.03%, Spkr Sim 0.764.', year: 2025},
+            {name: 'GLM-TTS', date: '2025-12', category: 'RL/Alignment', desc: 'Applies Group Relative Policy Optimization (GRPO) to zero-shot speech generation. Generates groups of candidates, scores with reward model, computes group-relative advantages. 1.3B params, CER 1.03%, Spkr Sim 0.764.', year: 2025},
+            {name: 'ARDM-DPO', date: '2025', category: 'RL/Alignment', desc: 'Direct Preference Optimization for Speech Autoregressive Diffusion Models. Adapts DPO to autoregressive diffusion architectures for improved TTS quality alignment.', year: 2025},
+            {name: 'LPO', date: '2025', category: 'RL/Alignment', desc: 'Listwise Preference Optimization for Text-to-Speech. Extends preference alignment from pairwise to listwise ranking for TTS model optimization. (arXiv ID unconfirmed)', year: 2025},
+            {name: 'Intelligibility Pref.', date: '2025', category: 'RL/Alignment', desc: 'Preference Alignment for Intelligibility in TTS. Applies preference optimization specifically targeting intelligibility improvements in synthesized speech.', year: 2025},
+            {name: 'InstructTTSEval', date: '2025', category: 'Evaluation', desc: 'Benchmarking Complex Natural-Language Instruction Following in Text-to-Speech Systems. Evaluates how well TTS models follow detailed natural language instructions.', year: 2025},
+            {name: 'Speech Contamination', date: '2025', category: 'Evaluation', desc: 'Evaluation of LLMs in Speech is Often Flawed: Test Set Contamination in Benchmarks. Identifies and quantifies benchmark contamination risks in speech model evaluation.', year: 2025},
+            {name: 'Full-Duplex-Bench', date: '2025', category: 'Evaluation', desc: 'Benchmark to evaluate full-duplex spoken dialogue models on turn-taking capabilities. Tests real-time conversational speech generation quality.', year: 2025},
+            {name: 'Azzuni Survey', date: '2025', category: 'Foundation', desc: 'Voice Cloning: Comprehensive Survey. Contemporary survey on voice cloning techniques, providing complementary coverage to this survey.', year: 2025},
+            {name: 'NeuTTS Air', date: '2025', category: 'Foundation', desc: 'On-Device Super-Realistic TTS with Instant Voice Cloning. Demonstrates on-device deployment of zero-shot voice cloning with minimal latency. Hugging Face model release.', year: 2025},
 
             // ===== 2026 =====
             {name: 'MM-Sonate', date: '2026-01', category: 'Multimodal', desc: 'Unified multimodal framework for joint audio-video generation with zero-shot voice cloning. Multi-modal Diffusion Transformer (MM-DiT) with timbre injection and noise-based negative conditioning for CFG.', year: 2026},
@@ -311,6 +387,8 @@
             {name: 'TRUS', date: '2026-01', category: 'Security', desc: 'Training-free speaker unlearning for zero-shot TTS. Erases specific speaker identity from a trained model without retraining, enabling voice consent revocation.', year: 2026},
             {name: 'PersonaPlex', date: '2026-02', category: 'Multimodal', desc: 'Voice and role control for full-duplex conversational speech models. Extends synthesis to explicitly controlled conversational settings with speaker persona management.', year: 2026},
             {name: 'Fish-Speech S2', date: '2026-03', category: 'Streaming', desc: 'Extends Fish-Speech with improved streaming and multilingual performance. Strengthens real-time multilingual synthesis capabilities for production deployment.', year: 2026},
+            {name: 'ElevenLabs v3 Tags', date: '2026', category: 'Foundation', desc: 'Eleven v3 Audio Tags for controllable synthesis. Industry blog post on natural language tag-based control of commercial TTS output.', year: 2026},
+            {name: 'ElevenLabs v3 Help', date: '2026', category: 'Foundation', desc: 'Documentation on how audio tags work with Eleven v3. Help center article on industry-leading commercial voice cloning controls.', year: 2026},
         ];
 
         const categoryColors = {
@@ -320,7 +398,11 @@
             'Controllable': '#f39c12',
             'Streaming': '#1abc9c',
             'Multimodal': '#9b59b6',
-            'Security': '#e67e22'
+            'Security': '#e67e22',
+            'RL/Alignment': '#c0392b',
+            'Evaluation': '#8e44ad',
+            'Datasets': '#16a085',
+            'Foundation': '#34495e'
         };
 
         let currentFilter = 'all';
@@ -329,9 +411,10 @@
             const timeline = document.getElementById('timeline');
             timeline.innerHTML = '';
 
-            const years = [2022, 2023, 2024, 2025, 2026];
+            // Dynamically get all years from papers
+            const allYears = [...new Set(papers.map(p => p.year))].sort((a, b) => b - a);
 
-            years.forEach(year => {
+            allYears.forEach(year => {
                 const yearPapers = papers.filter(p => p.year === year &&
                     (currentFilter === 'all' || p.category === currentFilter));
 
