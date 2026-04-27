@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Cloning Research Timeline (2022-2026)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 5px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #f8f9fa;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .year-section {
+            margin-bottom: 50px;
+        }
+
+        .year-header {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .paper-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .paper-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .paper-date {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .paper-category {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .paper-desc {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            background: white;
+            color: #3498db;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voice Cloning Research Timeline</h1>
+        <p class="subtitle">Comprehensive Survey of Zero-Shot and Controllable Speech Synthesis (2022&ndash;2026)</p>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">65+</div>
+                <div class="stat-label">References in Survey</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">36</div>
+                <div class="stat-label">Systems Covered</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Max Training Hours</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">32</div>
+                <div class="stat-label">Max Languages</div>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterPapers('all')">All Systems</button>
+            <button class="filter-btn" onclick="filterPapers('Neural Codec LM')">Neural Codec LM</button>
+            <button class="filter-btn" onclick="filterPapers('Flow/Diffusion')">Flow/Diffusion</button>
+            <button class="filter-btn" onclick="filterPapers('Disentanglement')">Disentanglement</button>
+            <button class="filter-btn" onclick="filterPapers('Controllable')">Controllable</button>
+            <button class="filter-btn" onclick="filterPapers('Streaming')">Streaming</button>
+            <button class="filter-btn" onclick="filterPapers('Multimodal')">Multimodal</button>
+            <button class="filter-btn" onclick="filterPapers('Security')">Security</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3498db;"></div>
+                <span>Neural Codec LM</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #e74c3c;"></div>
+                <span>Flow/Diffusion</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #2ecc71;"></div>
+                <span>Disentanglement</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f39c12;"></div>
+                <span>Controllable</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #1abc9c;"></div>
+                <span>Streaming</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #9b59b6;"></div>
+                <span>Multimodal</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #e67e22;"></div>
+                <span>Security</span>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+    </div>
+
+    <script>
+        const papers = [
+            // ===== 2022 =====
+            {name: 'YourTTS', date: '2022-06', category: 'Multimodal', desc: 'Multilingual zero-shot multi-speaker synthesis within a unified VITS-style architecture. Demonstrated multilingual speaker-conditioned synthesis was feasible without speaker-specific retraining. Trained on 1.2K hours. ICML 2022.', year: 2022},
+
+            // ===== 2023 =====
+            {name: 'VALL-E', date: '2023-01', category: 'Neural Codec LM', desc: 'Pioneering zero-shot codec language model that established the paradigm of generating EnCodec tokens autoregressively from text and short speaker prompts. Trained on 60K hours of Libri-Light with 8 RVQ layers. 3-second prompt cloning.', year: 2023},
+            {name: 'Voicebox', date: '2023-06', category: 'Flow/Diffusion', desc: 'Broadened the codec LM design space by employing optimal-transport flow matching, enabling non-causal refinement, flexible conditioning, and editing-style use cases at scale. Trained on 60K hrs English + 50K multilingual.', year: 2023},
+            {name: 'Mega-TTS', date: '2023-06', category: 'Neural Codec LM', desc: 'Introduced hierarchical prompting and stronger representational bias through intrinsic inductive bias. Decomposes speech into content, timbre, prosody, and phase attributes, each modeled with appropriate inductive biases.', year: 2023},
+            {name: 'HierSpeech++', date: '2023-11', category: 'Disentanglement', desc: 'Hierarchical semantic-acoustic disentanglement based on self-supervised representations. Bridges the gap between semantic and acoustic representation of speech through hierarchical modeling.', year: 2023},
+
+            // ===== 2024 =====
+            {name: 'Parler-TTS', date: '2024-02', category: 'Controllable', desc: 'Natural language guidance of high-fidelity text-to-speech with synthetic annotations. Scalable method for labeling speaker identity, style, and recording conditions, applied to a 45K hour dataset. Fully open-source.', year: 2024},
+            {name: 'NaturalSpeech 3', date: '2024-03', category: 'Flow/Diffusion', desc: 'Factorized diffusion modeling separating content, prosody, timbre, and acoustic details into separate subspaces. Uses FACodec and factorized vector quantization. WER 1.81%, Speaker Sim 0.67 on LibriSpeech. ICML 2024.', year: 2024},
+            {name: 'FlashSpeech', date: '2024-04', category: 'Flow/Diffusion', desc: 'Efficient zero-shot speech synthesis emphasizing fast inference while maintaining competitive quality. Reduces computational cost compared to larger flow-matching models.', year: 2024},
+            {name: 'XTTS', date: '2024-06', category: 'Multimodal', desc: 'Massively multilingual zero-shot TTS model trained across 16 languages with carefully curated data. Demonstrates cross-lingual TTS and code-switching capabilities. GPT-2 backbone with 467M parameters.', year: 2024},
+            {name: 'ControlSpeech', date: '2024-06', category: 'Controllable', desc: 'Simultaneous and independent control over speaker identity and style using natural language instructions. Disentangled representation space with encoder-decoder architecture and decoupled codec.', year: 2024},
+            {name: 'E2 TTS', date: '2024-06', category: 'Flow/Diffusion', desc: 'Embarrassingly Easy fully non-autoregressive zero-shot TTS. Eliminated external aligners and explicit duration modeling via filler tokens, simplifying architecture while maintaining quality.', year: 2024},
+            {name: 'Seed-TTS', date: '2024-06', category: 'Neural Codec LM', desc: 'Family of versatile speech generation models combining autoregressive coarse codes, diffusion refinement, self-distillation, and DPO/PPO post-training alignment. 0.7B params, 150K hrs training. WER 3.1%.', year: 2024},
+            {name: 'VALL-E 2', date: '2024-06', category: 'Neural Codec LM', desc: 'Achieved human-parity zero-shot TTS. Key innovations: repetition-aware sampling (prevents infinite loops) and grouped code modeling (joint prediction of multiple codec tokens). 450M params.', year: 2024},
+            {name: 'Mega-TTS 2', date: '2024-07', category: 'Neural Codec LM', desc: 'Enhanced version with multi-reference timbre encoder and prosody latent language model. Extracts rich information from long prompts. Scaled training to 60-200K hours. ICLR 2024.', year: 2024},
+            {name: 'MaskGCT', date: '2024-09', category: 'Neural Codec LM', desc: 'Masked Generative Codec Transformer predicting semantic and acoustic tokens via masked generation. Eliminates explicit alignment requirements. 385M params, 100K hrs training. WER 2.634%, Spkr Sim 0.751.', year: 2024},
+            {name: 'F5-TTS', date: '2024-10', category: 'Flow/Diffusion', desc: 'Strong non-autoregressive flow-matching baseline with explicit duration handling. Diffusion Transformer (DiT) backbone, ConvNeXt text refinement, and sway sampling. 336M params, 100K hrs. WER 2.42%.', year: 2024},
+            {name: 'StyleTTS 2', date: '2024-10', category: 'Disentanglement', desc: 'Towards human-level TTS through style diffusion and adversarial training with large speech language models. Separates style from content for expressive zero-shot synthesis. NeurIPS 2023.', year: 2024},
+            {name: 'Fish-Speech', date: '2024-11', category: 'Streaming', desc: 'Combines large-scale multilingual training (720K hours, primarily Mandarin and English) with dual autoregressive architecture and grouped finite scalar quantization (GFSQ). Avoids exponential codebook growth.', year: 2024},
+            {name: 'CosyVoice 2', date: '2024-12', category: 'Streaming', desc: 'Production-oriented streaming design with 0.5B parameters, chunked decoding, FSQ-style quantization, and small look-ahead buffers. First-packet latency ~150 ms. Trained on 200K hours.', year: 2024},
+            {name: 'AudioSeal', date: '2024-01', category: 'Security', desc: 'Proactive detection of voice cloning with localized watermarking. Embeds imperceptible watermarks that survive voice cloning pipelines, enabling detection of synthetic speech.', year: 2024},
+
+            // ===== 2025 =====
+            {name: 'Vevo', date: '2025-02', category: 'Disentanglement', desc: 'Two-stage controllable voice imitation: AR transformer models content and style, flow-matching transformer handles acoustics. VQ-VAE disentangles timbre, style, and content. Enables accent and emotion conversion.', year: 2025},
+            {name: 'Spark-TTS', date: '2025-03', category: 'Neural Codec LM', desc: 'LLM-based framework with BiCodec producing semantic tokens for content and global tokens for speaker attributes via single-stream decoupling. DPO preference alignment. 0.6B params, 120K hrs. WER 2.7%.', year: 2025},
+            {name: 'ClonEval', date: '2025-04', category: 'Security', desc: 'Open voice cloning benchmark using WavLM-based speaker similarity as primary identity metric. Standardized automated pipeline for reference selection, synthesis, and evaluation. English-only, no human MOS.', year: 2025},
+            {name: 'CosyVoice 3', date: '2025-05', category: 'Streaming', desc: 'Scales to 1M hours across 9 languages and 18 Chinese dialects, 1.5B parameters. Novel supervised multi-task speech tokenizer improves prosody. Differentiable reward model for post-training. WER 2.1%, Spkr Sim 0.76.', year: 2025},
+            {name: 'MiniMax-Speech', date: '2025-05', category: 'Multimodal', desc: 'Massive 32-language zero-shot TTS with learnable speaker encoder and Flow-VAE design. 0.8B params, 180K hrs training. WER 2.8%, Spkr Sim 0.74. Highly ranked in community evaluations.', year: 2025},
+            {name: 'VoiceMark', date: '2025-05', category: 'Security', desc: 'Voice cloning-resistant watermarking leveraging speaker-specific latents as watermark carriers. RVQ models for latent disentanglement, cross-attention-based watermark embedders. High detection accuracy after synthesis.', year: 2025},
+            {name: 'ZipVoice', date: '2025-06', category: 'Flow/Diffusion', desc: 'Flow-matching with Zipformer-based vector field estimation, average upsampling alignment, and flow distillation. 3x smaller and up to 30x faster than comparable models while maintaining quality.', year: 2025},
+            {name: 'IndexTTS 2', date: '2025-06', category: 'Controllable', desc: 'Joint duration and emotion control using Qwen-based language model with soft instruction mechanisms. Prioritizes explicit emotion and duration control for expressive synthesis.', year: 2025},
+            {name: 'EmoSphere++', date: '2025-07', category: 'Controllable', desc: 'Emotion-controllable zero-shot TTS using emotion-adaptive spherical vector and multi-level style encoder. Separates speaker identity, prosody, and emotion. Published in IEEE Transactions on Affective Computing.', year: 2025},
+            {name: 'DisCo-Speech', date: '2025-12', category: 'Disentanglement', desc: 'DisCodec with tri-factor disentanglement (content, prosody, timbre) at codec level. LM-based generator enables prosodic continuation with independent timbre control via cross-attention decoder injection.', year: 2025},
+            {name: 'GLM-TTS', date: '2025-12', category: 'Neural Codec LM', desc: 'Applies Group Relative Policy Optimization (GRPO) to zero-shot speech generation. Generates groups of candidates, scores with reward model, computes group-relative advantages. 1.3B params, CER 1.03%, Spkr Sim 0.764.', year: 2025},
+
+            // ===== 2026 =====
+            {name: 'MM-Sonate', date: '2026-01', category: 'Multimodal', desc: 'Unified multimodal framework for joint audio-video generation with zero-shot voice cloning. Multi-modal Diffusion Transformer (MM-DiT) with timbre injection and noise-based negative conditioning for CFG.', year: 2026},
+            {name: 'Qwen3-TTS', date: '2026-01', category: 'Streaming', desc: 'Dual-track streaming architecture: coarse decoder (Track A, 25 Hz) emits tokens within ~97 ms, fine decoder (Track B, 12 Hz) fills spectral detail asynchronously. 1.7B params, 200K hrs. WER 6.1%, Spkr Sim 0.78.', year: 2026},
+            {name: 'TRUS', date: '2026-01', category: 'Security', desc: 'Training-free speaker unlearning for zero-shot TTS. Erases specific speaker identity from a trained model without retraining, enabling voice consent revocation.', year: 2026},
+            {name: 'PersonaPlex', date: '2026-02', category: 'Multimodal', desc: 'Voice and role control for full-duplex conversational speech models. Extends synthesis to explicitly controlled conversational settings with speaker persona management.', year: 2026},
+            {name: 'Fish-Speech S2', date: '2026-03', category: 'Streaming', desc: 'Extends Fish-Speech with improved streaming and multilingual performance. Strengthens real-time multilingual synthesis capabilities for production deployment.', year: 2026},
+        ];
+
+        const categoryColors = {
+            'Neural Codec LM': '#3498db',
+            'Flow/Diffusion': '#e74c3c',
+            'Disentanglement': '#2ecc71',
+            'Controllable': '#f39c12',
+            'Streaming': '#1abc9c',
+            'Multimodal': '#9b59b6',
+            'Security': '#e67e22'
+        };
+
+        let currentFilter = 'all';
+
+        function renderTimeline() {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+
+            const years = [2022, 2023, 2024, 2025, 2026];
+
+            years.forEach(year => {
+                const yearPapers = papers.filter(p => p.year === year &&
+                    (currentFilter === 'all' || p.category === currentFilter));
+
+                if (yearPapers.length === 0) return;
+
+                const yearSection = document.createElement('div');
+                yearSection.className = 'year-section';
+
+                const yearHeader = document.createElement('div');
+                yearHeader.className = 'year-header';
+                yearHeader.textContent = `${year} (${yearPapers.length} ${yearPapers.length === 1 ? 'paper' : 'papers'})`;
+                yearSection.appendChild(yearHeader);
+
+                const papersGrid = document.createElement('div');
+                papersGrid.className = 'papers-grid';
+
+                yearPapers.forEach(paper => {
+                    const card = document.createElement('div');
+                    card.className = 'paper-card';
+                    card.style.borderLeftColor = categoryColors[paper.category];
+
+                    card.innerHTML = `
+                        <div class="paper-name">${paper.name}</div>
+                        <div class="paper-date">${paper.date}</div>
+                        <div class="paper-category" style="background: ${categoryColors[paper.category]}">
+                            ${paper.category}
+                        </div>
+                        <div class="paper-desc">${paper.desc}</div>
+                    `;
+
+                    papersGrid.appendChild(card);
+                });
+
+                yearSection.appendChild(papersGrid);
+                timeline.appendChild(yearSection);
+            });
+        }
+
+        function filterPapers(category) {
+            currentFilter = category;
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderTimeline();
+        }
+
+        renderTimeline();
+    </script>
+</body>
+</html>
